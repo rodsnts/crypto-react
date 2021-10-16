@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Chart } from "./components/Chart";
+import { Chart } from "./components/Chart/Chart";
 import "./App.css";
+import Input from "./components/Input/Input";
+import Button from "./components/Button/Button";
 
 function App() {
   const [askCrypto, setAskCrypto] = useState("");
+  const [render, setRender] = useState(false);
   const [livePrice, setLivePrice] = useState("");
+  const [chartData, setChartData] = useState({});
 
   const weeks = [
     "Monday",
@@ -31,12 +35,14 @@ function App() {
           {
             label: "Price in USD",
             data: data.data.map((crypto: any) => crypto.priceUsd),
-            borderColor: ["#11a8ff"],
-            tension: 0.1,
+            borderColor: ["#000000"],
+            tension: 0.3,
             fill: true,
           },
         ],
       });
+
+      setRender(true);
 
       const pricesWs = new WebSocket(
         `wss://ws.coincap.io/prices?assets=${crypto}`
@@ -49,21 +55,21 @@ function App() {
     }
   };
 
-  const [chartData, setChartData] = useState({});
-
   return (
     <div className="App">
-      <input
-        type="text"
-        onChange={(e) => setAskCrypto(e.target.value)}
-        onKeyPress={search}
-        name="crypto"
-      />
-      <Chart chartData={chartData} />
-      <h1>
-        Current Price:{" "}
-        <span>${livePrice.replace(/{"[a-zA-Z]+":"|"}/g, " ")}</span>
-      </h1>
+      <main>
+        <Input
+          event={(e: any) => setAskCrypto(e.target.value)}
+          action={search}
+        />
+        <Chart
+          chartData={chartData}
+          price={livePrice}
+          title={askCrypto}
+          show={render}
+        />
+        <Button content="GitHub →" link="https://google.com" />
+      </main>
     </div>
   );
 }
