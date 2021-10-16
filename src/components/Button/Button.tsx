@@ -15,9 +15,15 @@ const StyledButton = styled.a`
   color: white;
   padding: 25px 25px;
   border-radius: 7px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    background-color: #292929;
+  }
 `;
 
 export default Button;

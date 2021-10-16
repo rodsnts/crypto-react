@@ -25,7 +25,7 @@ function App() {
   const search = async (evt: any) => {
     if (evt.key === "Enter") {
       const res = await fetch(
-        `https://api.coincap.io/v2/assets/${crypto}/history?interval=d1&start=1633305600000&end=1633910400000`
+        `https://api.coincap.io/v2/assets/${crypto}/history?interval=d1&start=1633305600000&end=1634393652000`
       );
       const data = await res.json();
 
@@ -59,6 +59,7 @@ function App() {
     <div className="App">
       <main>
         <Input
+          placeholder="Search your favorito crypto..."
           event={(e: any) => setAskCrypto(e.target.value)}
           action={search}
         />
@@ -68,7 +69,10 @@ function App() {
           title={askCrypto}
           show={render}
         />
-        <Button content="GitHub →" link="https://google.com" />
+        <Button
+          content="GitHub →"
+          link="https://github.com/rodsnts/crypto-react"
+        />
       </main>
     </div>
   );

@@ -4,6 +4,9 @@ import { Line } from "react-chartjs-2";
 export const Chart = ({ chartData, price, show }: any) => {
   return (
     <StyledDiv>
+      <h1>
+        Current Price: <span>${price.replace(/{"[a-zA-Z]+":"|"}/g, "")}</span>
+      </h1>
       {show ? (
         <Line
           data={chartData}
@@ -13,9 +16,6 @@ export const Chart = ({ chartData, price, show }: any) => {
           }}
         />
       ) : null}
-      <h1>
-        Current Price: <span>${price.replace(/{"[a-zA-Z]+":"|"}/g, "")}</span>
-      </h1>
     </StyledDiv>
   );
 };
