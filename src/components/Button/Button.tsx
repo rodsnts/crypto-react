@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const Button = ({ link, content }: any) => {
+interface Props {
+  link: string;
+  content: string;
+}
+
+const Button: React.FC<Props> = ({ link, content }: any) => {
   return (
     <StyledButton href={link} target="__blank">
       {content}

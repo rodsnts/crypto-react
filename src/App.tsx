@@ -4,7 +4,7 @@ import "./App.css";
 import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
 
-function App() {
+const App: React.FC = () => {
   const [askCrypto, setAskCrypto] = useState("");
   const [render, setRender] = useState(false);
   const [livePrice, setLivePrice] = useState("");
